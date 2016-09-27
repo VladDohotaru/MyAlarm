@@ -88,11 +88,15 @@ public class Alarm extends JFrame implements ActionListener {
         } catch(IllegalAccessException e) {
             e.printStackTrace();
         }
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new Alarm();
-            }
-        });
+        Runnable task1 = () -> {
+            System.out.println("Running thread: " + Thread.currentThread().getName() + " with lambda! ");
+            new Alarm();
+        };
+//        Runnable task2 = () -> {
+//            System.out.println("Running second pharralel " + Thread.currentThread().getName() + "thread task !");
+//            new Alarm();
+//        };
+        new Thread(task1).start();
+//        new Thread(task2).start();
     }
 }
